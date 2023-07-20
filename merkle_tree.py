@@ -97,3 +97,4 @@ class MerkleTree:
     self.differences = []
     return self.compare_tree(other, self.root_index())
 
+# TODO: generate merkle proof and verify it
