@@ -14,6 +14,7 @@ parser.add_argument('-c', '--compare', type=str, nargs='?',
                     help='compare files')
 parser.add_argument('-p', '--pretty-print', action='store_true',
                     help='verbose output') # TO DO: add nb of chunks as an argument
+# TODO: maybe save root hash in file metadata
 
 args = parser.parse_args()
 
