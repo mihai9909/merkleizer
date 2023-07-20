@@ -1,5 +1,5 @@
 # Merkleizer - README
-The Merkleizer is a Python script that splits a file into chunks (100 chunks by default) and builds a Merkle tree from these chunks. It can be used to verify the integrity of a file (most likely you are better off using sha256sum) or see what chunks differ in files of the same size (use ```git diff``` instead :smile:).
+The Merkleizer is a Python script that splits a file into chunks (100 chunks by default) and builds a Merkle tree from these chunks. It can be used to verify the integrity of a file (most likely you are better off using ```sha256sum```) or see what chunks differ in files of the same size (use ```git diff``` instead :smile:).
 
 ## Requirements
 Python 3.x
