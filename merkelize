@@ -1,0 +1,38 @@
+#! /usr/bin/python3
+
+from merkle_tree import MerkleTree
+import sys
+import argparse
+from file_splitter import FileSplitter
+
+parser = argparse.ArgumentParser(description='Merkelize a file')
+parser.add_argument('file', metavar='file', type=str, nargs='+',
+										help='file to merkelize')
+parser.add_argument('-dc', '--deep-compare', type=str, nargs='?',
+										help='compare files')
+parser.add_argument('-c', '--compare', type=str, nargs='?',
+										help='compare files')
+parser.add_argument('-p', '--pretty-print', action='store_true',
+										help='verbose output') # TO DO: add nb of chunks as an argument
+
+args = parser.parse_args()
+
+if args.deep_compare:
+	print("Comparing files")
+	file1_chunks = FileSplitter(args.file[0]).split_file(100)
+	file2_chunks = FileSplitter(args.deep_compare).split_file(100)
+	merkle_tree1 = MerkleTree(file1_chunks)
+	merkle_tree2 = MerkleTree(file2_chunks)
+	merkle_tree1.deep_compare(merkle_tree2)
+	print("Differences:", merkle_tree1.differences) # TO DO: print differences in a better way maybe (display byte offset from the beginning of the file)
+	sys.exit(0)
+
+
+file_chunks = FileSplitter(args.file[0]).split_file(10)
+merkle_tree = MerkleTree(file_chunks)
+
+if args.pretty_print:
+	print("Pretty print:")
+	merkle_tree.print_tree()
+else:
+	print("Root hash:", merkle_tree.root())
